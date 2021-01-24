@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 
+import org.ar.mvn.gui.GeneralFrame;
 import org.ar.mvn.gui.entity.Project;
 import org.ar.mvn.gui.listeners.IGenerateProjectExecutorListener;
 import org.ar.mvn.gui.listeners.ITaskExecutorListener;
@@ -111,6 +112,11 @@ public final class CommandExecutorUtil {
   }
 
   private static String generateMavenLocation() {
-    return ApplicationStateManager.INSTANCE().getSettings().getMavenHome() + "/bin/mvn";
+    return ApplicationStateManager.INSTANCE().getSettings().getMavenHome() + getExeName()+(GeneralFrame.isWindows()?".cmd":"");
   }
+  
+  private static String getExeName() {
+	  return "/bin/mvn";
+  }
+  
 }

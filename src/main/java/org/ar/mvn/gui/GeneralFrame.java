@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import org.ar.mvn.gui.constants.PanelSources;
 import org.ar.mvn.gui.constants.Sources;
@@ -28,6 +29,10 @@ public class GeneralFrame extends JFrame {
     setLocationRelativeTo(null);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setResizable(false);
+    try {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	} catch (Exception e) {
+	}
     //
     setIcon();
     //
@@ -51,12 +56,18 @@ public class GeneralFrame extends JFrame {
     }
   }
 
-  private static boolean isMac() {
-    String OS = System.getProperty("os.name").toLowerCase();
-    return (OS.indexOf("mac") >= 0);
-
+  private static String getOsName() {
+    return System.getProperty("os.name").toLowerCase();
+  }
+  
+  public static boolean isMac() {
+	  return getOsName().contains("mac");
   }
 
+  public static boolean isWindows() {
+	  return getOsName().contains("win");
+  }
+  
   private void initialize() {
     setLayout(new BorderLayout());
     //
